@@ -2,6 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface TableValue {
   value: Color[];
+  error: boolean;
 }
 
 interface Color {
@@ -12,7 +13,7 @@ interface Color {
   pantone_value: string;
 }
 
-const initialState: TableValue = { value: [] };
+const initialState: TableValue = { value: [], error: false };
 
 export const tableSlice = createSlice({
   name: "table",
@@ -20,10 +21,14 @@ export const tableSlice = createSlice({
   reducers: {
     changeTable: (state, action: PayloadAction<Color[]>) => {
       state.value = action.payload;
+      state.error = false;
+    },
+    setError: (state) => {
+      state.error = true;
     },
   },
 });
 
-export const { changeTable } = tableSlice.actions;
+export const { changeTable, setError } = tableSlice.actions;
 
 export default tableSlice.reducer;

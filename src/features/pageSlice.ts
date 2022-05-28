@@ -1,10 +1,10 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface PageValue {
-  value: { page: number; totalPage?: number };
+  value: { page: number; totalPage: number | null };
 }
 
-const initialState: PageValue = { value: { page: 1 } };
+const initialState: PageValue = { value: { page: 1, totalPage: null } };
 
 export const pageSlice = createSlice({
   name: "page",

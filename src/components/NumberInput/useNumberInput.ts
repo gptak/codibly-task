@@ -3,7 +3,7 @@ import { debounce } from "lodash";
 import { useSelector, useDispatch } from "react-redux";
 import { changeFilter } from "../../features/filterSlice";
 import { setPage } from "../../features/pageSlice";
-import { changeTable } from "../../features/tableSlice";
+import { changeTable, setError } from "../../features/tableSlice";
 import { RootState } from "../../app/store";
 
 export default function useNumberInput() {
@@ -25,7 +25,8 @@ export default function useNumberInput() {
             return;
           }
           dispatch(changeTable([response.data.data]));
-        });
+        })
+        .catch((error) => dispatch(setError()));
       return;
     }
     axios
@@ -33,7 +34,8 @@ export default function useNumberInput() {
       .then((response) => {
         dispatch(changeTable(response.data.data));
         dispatch(setPage(1));
-      });
+      })
+      .catch((error) => dispatch(setError()));
   }, 500);
 
   return {

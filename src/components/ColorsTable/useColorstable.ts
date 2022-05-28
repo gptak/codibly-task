@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { changeTable } from "../../features/tableSlice";
+import { changeTable, setError } from "../../features/tableSlice";
 import { setTotalPage } from "../../features/pageSlice";
 import { RootState } from "../../app/store";
 
@@ -16,7 +16,8 @@ export default function useColorTable() {
       .then((response) => {
         dispatch(changeTable(response.data.data));
         dispatch(setTotalPage(response.data.total_pages));
-      });
+      })
+      .catch(() => dispatch(setError()));
   }, [dispatch, page]);
 
   return { table };

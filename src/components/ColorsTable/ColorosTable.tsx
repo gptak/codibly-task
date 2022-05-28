@@ -5,13 +5,24 @@ export default function ColorsTable() {
 
   return (
     <div>
-      {table.map((color, key) => (
-        <div style={{ background: `${color.color}` }} key={key}>
-          <div>{color.id}</div>
-          <div>{color.name}</div>
-          <div>{color.year}</div>
-        </div>
-      ))}
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Year</th>
+          </tr>
+        </thead>
+        <tbody>
+          {table.map((color, key) => (
+            <tr style={{ background: `${color.color}` }} key={key}>
+              <td>{color.id}</td>
+              <td>{color.name}</td>
+              <td>{color.year}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 }
