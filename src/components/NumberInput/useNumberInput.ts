@@ -1,15 +1,15 @@
 import axios from "axios";
+import { debounce } from "lodash";
 import { useSelector, useDispatch } from "react-redux";
 import { changeFilter } from "../../features/filterSlice";
-import { RootState } from "../../app/store";
+import { setPage } from "../../features/pageSlice";
 import { changeTable } from "../../features/tableSlice";
-import { debounce } from "lodash";
+import { RootState } from "../../app/store";
 
 export default function useNumberInput() {
   const dispatch = useDispatch();
   const filter = useSelector((state: RootState) => state.filter.value);
 
-  console.log(filter);
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(changeFilter(e.target.value));
   };
@@ -30,7 +30,10 @@ export default function useNumberInput() {
     }
     axios
       .get(`https://reqres.in/api/products?page=1&per_page=5`)
-      .then((response) => dispatch(changeTable(response.data.data)));
+      .then((response) => {
+        dispatch(changeTable(response.data.data));
+        dispatch(setPage(1));
+      });
   }, 500);
 
   return {
