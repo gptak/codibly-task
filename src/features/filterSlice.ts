@@ -1,10 +1,10 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-interface pageValue {
+interface FilterValue {
   value: string;
 }
 
-const initialState: pageValue = { value: "" };
+const initialState: FilterValue = { value: "" };
 
 export const pageSlice = createSlice({
   name: "filter",

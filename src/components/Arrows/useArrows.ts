@@ -3,11 +3,17 @@ import { prevPage, nextPage } from "../../features/pageSlice";
 import { RootState } from "../../app/store";
 
 export default function useArrows() {
-  const page = useSelector((state: RootState) => state.page.value);
-  const table = useSelector((state: RootState) => state.table.value);
+  const page = useSelector((state: RootState) => state.page.value.page);
+  const filter = useSelector((state: RootState) => state.filter.value);
+
+  const totalPage = useSelector(
+    (state: RootState) => state.page.value.totalPage
+  );
   const dispatch = useDispatch();
 
-  const lastPage = table?.length < 5;
+  const firstPage = page <= 1 && true;
+  const lastPage = page === totalPage && true;
+  const isFiltering = filter !== "" && true;
 
   const handlePrev = () => {
     dispatch(prevPage());
@@ -16,5 +22,5 @@ export default function useArrows() {
     dispatch(nextPage());
   };
 
-  return { page, handlePrev, handleNext, lastPage };
+  return { firstPage, lastPage, isFiltering, handlePrev, handleNext };
 }

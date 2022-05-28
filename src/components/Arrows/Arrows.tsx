@@ -1,14 +1,14 @@
 import useArrows from "./useArrows";
 
 export default function Arrows() {
-  const { page, handlePrev, handleNext, lastPage } = useArrows();
-  console.log(page);
+  const { firstPage, lastPage, isFiltering, handlePrev, handleNext } =
+    useArrows();
   return (
     <div>
-      <button disabled={page <= 1} onClick={handlePrev}>
+      <button disabled={firstPage || isFiltering} onClick={handlePrev}>
         Prev
       </button>
-      <button disabled={lastPage} onClick={handleNext}>
+      <button disabled={lastPage || isFiltering} onClick={handleNext}>
         Next
       </button>
     </div>

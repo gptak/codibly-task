@@ -1,24 +1,27 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-interface pageValue {
-  value: number;
+interface PageValue {
+  value: { page: number; totalPage?: number };
 }
 
-const initialState: pageValue = { value: 1 };
+const initialState: PageValue = { value: { page: 1 } };
 
 export const pageSlice = createSlice({
   name: "page",
   initialState,
   reducers: {
     nextPage: (state) => {
-      state.value++;
+      state.value.page++;
     },
     prevPage: (state) => {
-      state.value--;
+      state.value.page--;
+    },
+    setTotalPage: (state, action: PayloadAction<number>) => {
+      state.value.totalPage = action.payload;
     },
   },
 });
 
-export const { nextPage, prevPage } = pageSlice.actions;
+export const { nextPage, prevPage, setTotalPage } = pageSlice.actions;
 
 export default pageSlice.reducer;
