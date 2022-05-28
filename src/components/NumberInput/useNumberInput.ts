@@ -14,7 +14,7 @@ export default function useNumberInput() {
     dispatch(changeFilter(e.target.value));
   };
 
-  const handleFilter = debounce((e: React.KeyboardEvent) => {
+  const handleFilter = debounce(() => {
     if (filter) {
       axios
         .get(`https://reqres.in/api/products?id=${filter}`)
