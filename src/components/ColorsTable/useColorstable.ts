@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { changeTable, setError } from "../../features/tableSlice";
 import { setTotalPage } from "../../features/pageSlice";
 import { RootState } from "../../app/store";
+import { baseURL } from "../../config/config";
 
 export default function useColorTable() {
   const page = useSelector((state: RootState) => state.page.value.page);
@@ -12,7 +13,7 @@ export default function useColorTable() {
 
   useEffect(() => {
     axios
-      .get(`https://reqres.in/api/products?page=${page}&per_page=5`)
+      .get(`${baseURL}?page=${page}&per_page=5`)
       .then((response) => {
         dispatch(changeTable(response.data.data));
         dispatch(setTotalPage(response.data.total_pages));

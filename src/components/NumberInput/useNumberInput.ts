@@ -5,6 +5,7 @@ import { changeFilter } from "../../features/filterSlice";
 import { setPage } from "../../features/pageSlice";
 import { changeTable, setError } from "../../features/tableSlice";
 import { RootState } from "../../app/store";
+import { baseURL } from "../../config/config";
 
 export default function useNumberInput() {
   const dispatch = useDispatch();
@@ -17,7 +18,7 @@ export default function useNumberInput() {
   const handleFilter = debounce(() => {
     if (filter) {
       axios
-        .get(`https://reqres.in/api/products?id=${filter}`)
+        .get(`${baseURL}?id=${filter}`)
         .then((response) => {
           //check in case id is not unique
           if (response.data.data.isArray) {
@@ -26,16 +27,16 @@ export default function useNumberInput() {
           }
           dispatch(changeTable([response.data.data]));
         })
-        .catch((error) => dispatch(setError()));
+        .catch(() => dispatch(setError()));
       return;
     }
     axios
-      .get(`https://reqres.in/api/products?page=1&per_page=5`)
+      .get(`${baseURL}?page=1&per_page=5`)
       .then((response) => {
         dispatch(changeTable(response.data.data));
         dispatch(setPage(1));
       })
-      .catch((error) => dispatch(setError()));
+      .catch(() => dispatch(setError()));
   }, 500);
 
   return {

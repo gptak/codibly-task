@@ -1,4 +1,3 @@
-import "./App.css";
 import NumberInput from "../components/NumberInput/NumberInput";
 import ColorsTable from "../components/ColorsTable/ColorosTable";
 import Arrows from "../components/Arrows/Arrows";
