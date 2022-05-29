@@ -4,29 +4,32 @@ import Arrows from "../Arrows/Arrows";
 import Error from "../Error/Error";
 import useApp from "./useApp";
 import { Grid, Card, CardContent } from "@mui/material";
+import CssBaseline from "@mui/material/CssBaseline";
+import { StyledGridContainer } from "./App.styled";
 
 function App() {
   const { error } = useApp();
 
   return (
-    <Grid
-      container
-      direction="column"
-      alignItems="center"
-      justifyContent="center"
-      style={{ minHeight: "100vh" }}
-      sx={{ background: "#ddd" }}
-    >
-      <Grid item xs={3}>
-        <Card>
-          <CardContent>
-            <NumberInput />
-            {error ? <Error /> : <ColorsTable />}
-            <Arrows />
-          </CardContent>
-        </Card>
-      </Grid>
-    </Grid>
+    <>
+      <CssBaseline />
+      <StyledGridContainer
+        container
+        direction="column"
+        alignItems="center"
+        justifyContent="center"
+      >
+        <Grid item xs={4}>
+          <Card>
+            <CardContent>
+              <NumberInput />
+              {error ? <Error /> : <ColorsTable />}
+              <Arrows />
+            </CardContent>
+          </Card>
+        </Grid>
+      </StyledGridContainer>
+    </>
   );
 }
 

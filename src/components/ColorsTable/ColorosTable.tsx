@@ -1,19 +1,17 @@
 import useColorTable from "./useColorstable";
+import { TableBody, TableCell, TableHead, TableRow } from "@mui/material";
 import {
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-} from "@mui/material";
+  StyledTable,
+  StyledTableContainer,
+  StyledTableCell,
+} from "./ColorTable.styled";
 
 export default function ColorsTable() {
   const { table } = useColorTable();
 
   return (
-    <TableContainer sx={{ minHeight: 330 }}>
-      <Table sx={{ minWidth: 400 }} aria-label="color table">
+    <StyledTableContainer>
+      <StyledTable aria-label="color table">
         <TableHead>
           <TableRow>
             <TableCell align="left">ID</TableCell>
@@ -24,17 +22,13 @@ export default function ColorsTable() {
         <TableBody>
           {table.map((color, key) => (
             <TableRow sx={{ background: `${color.color}` }} key={key}>
-              <TableCell align="left" sx={{ width: 30 }}>
-                {color.id}
-              </TableCell>
+              <StyledTableCell align="left">{color.id}</StyledTableCell>
               <TableCell align="left">{color.name}</TableCell>
-              <TableCell align="right" sx={{ width: 50 }}>
-                {color.year}
-              </TableCell>
+              <TableCell align="right">{color.year}</TableCell>
             </TableRow>
           ))}
         </TableBody>
-      </Table>
-    </TableContainer>
+      </StyledTable>
+    </StyledTableContainer>
   );
 }

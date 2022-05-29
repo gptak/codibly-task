@@ -6,6 +6,8 @@ export default function useArrows() {
   const page = useSelector((state: RootState) => state.page.value.page);
   const filter = useSelector((state: RootState) => state.filter.value);
 
+  const error = useSelector((state: RootState) => state.table.error);
+
   const totalPage = useSelector(
     (state: RootState) => state.page.value.totalPage
   );
@@ -22,5 +24,5 @@ export default function useArrows() {
     dispatch(nextPage());
   };
 
-  return { firstPage, lastPage, isFiltering, handlePrev, handleNext };
+  return { firstPage, lastPage, isFiltering, error, handlePrev, handleNext };
 }

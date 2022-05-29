@@ -1,16 +1,14 @@
 import { Grid, Typography } from "@mui/material";
+import { StyledErrorContainer } from "./Error.styled";
 
 export default function Error() {
   return (
-    <Grid
-      container
-      sx={{ minHeight: 330, width: 400 }}
-      alignItems="center"
-      justifyContent="center"
-    >
+    <StyledErrorContainer container alignItems="center" justifyContent="center">
       <Grid item>
-        <Typography color={"red"}>Something went wrong.</Typography>
+        <Typography color={"red"} textAlign="center">
+          Something went wrong. Please check logs.
+        </Typography>
       </Grid>
-    </Grid>
+    </StyledErrorContainer>
   );
 }
