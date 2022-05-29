@@ -1,19 +1,19 @@
-import React from "react";
 import useNumberInput from "./useNumberInput";
+import { TextField } from "@mui/material";
 
 const NumberInput = () => {
   const { filter, handleInput, handleFilter } = useNumberInput();
 
   return (
-    <div>
-      <input
-        type="number"
-        min={1}
-        value={filter}
-        onChange={handleInput}
-        onKeyUp={handleFilter}
-      />
-    </div>
+    <TextField
+      type="number"
+      inputProps={{ min: 1 }}
+      value={filter}
+      label="ID filter"
+      sx={{ marginBottom: 2 }}
+      onChange={handleInput}
+      onKeyUp={handleFilter}
+    />
   );
 };
 
