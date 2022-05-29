@@ -5,7 +5,7 @@ import { changeFilter } from "../../features/filterSlice";
 import { setPage } from "../../features/pageSlice";
 import { changeTable, setError } from "../../features/tableSlice";
 import { RootState } from "../../app/store";
-import { baseURL } from "../../config/config";
+import { baseURL, debounceTime } from "../../config/config";
 
 export default function useNumberInput() {
   const dispatch = useDispatch();
@@ -27,7 +27,10 @@ export default function useNumberInput() {
           }
           dispatch(changeTable([response.data.data]));
         })
-        .catch(() => dispatch(setError()));
+        .catch((error) => {
+          dispatch(setError());
+          console.error(error.message);
+        });
       return;
     }
     axios
@@ -36,8 +39,11 @@ export default function useNumberInput() {
         dispatch(changeTable(response.data.data));
         dispatch(setPage(1));
       })
-      .catch(() => dispatch(setError()));
-  }, 500);
+      .catch((error) => {
+        dispatch(setError());
+        console.error(error.message);
+      });
+  }, debounceTime);
 
   return {
     filter,

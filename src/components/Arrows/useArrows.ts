@@ -11,9 +11,9 @@ export default function useArrows() {
   );
   const dispatch = useDispatch();
 
-  const firstPage = page <= 1 && true;
-  const lastPage = page === totalPage && true;
-  const isFiltering = filter !== "" && true;
+  const firstPage = !!(page <= 1);
+  const lastPage = !!(page === totalPage);
+  const isFiltering = !!(filter !== "");
 
   const handlePrev = () => {
     dispatch(prevPage());

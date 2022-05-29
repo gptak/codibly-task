@@ -18,7 +18,10 @@ export default function useColorTable() {
         dispatch(changeTable(response.data.data));
         dispatch(setTotalPage(response.data.total_pages));
       })
-      .catch(() => dispatch(setError()));
+      .catch((error) => {
+        dispatch(setError());
+        console.error(error.message);
+      });
   }, [dispatch, page]);
 
   return { table };
