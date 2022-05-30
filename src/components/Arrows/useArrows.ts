@@ -5,7 +5,6 @@ import { RootState } from "../../app/store";
 export default function useArrows() {
   const page = useSelector((state: RootState) => state.page.value.page);
   const filter = useSelector((state: RootState) => state.filter.value);
-
   const error = useSelector((state: RootState) => state.table.error);
 
   const totalPage = useSelector(
@@ -20,6 +19,7 @@ export default function useArrows() {
   const handlePrev = () => {
     dispatch(prevPage());
   };
+
   const handleNext = () => {
     dispatch(nextPage());
   };

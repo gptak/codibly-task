@@ -5,7 +5,6 @@ import Error from "../Error/Error";
 import useApp from "./useApp";
 import { Grid, Card, CardContent } from "@mui/material";
 import CssBaseline from "@mui/material/CssBaseline";
-import { StyledGridContainer } from "./App.styled";
 
 function App() {
   const { error } = useApp();
@@ -13,11 +12,12 @@ function App() {
   return (
     <>
       <CssBaseline />
-      <StyledGridContainer
+      <Grid
         container
         direction="column"
         alignItems="center"
         justifyContent="center"
+        sx={{ minHeight: "100vh" }}
       >
         <Grid item xs={4}>
           <Card>
@@ -28,7 +28,7 @@ function App() {
             </CardContent>
           </Card>
         </Grid>
-      </StyledGridContainer>
+      </Grid>
     </>
   );
 }
