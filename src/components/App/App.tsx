@@ -19,7 +19,7 @@ function App() {
         justifyContent="center"
         sx={{ minHeight: "100vh" }}
       >
-        <Grid item xs={4}>
+        <Grid item>
           <Card>
             <CardContent>
               <NumberInput />
