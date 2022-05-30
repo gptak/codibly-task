@@ -1,16 +1,13 @@
 import NumberInput from "../NumberInput/NumberInput";
 import ColorsTable from "../ColorsTable/ColorosTable";
 import Arrows from "../Arrows/Arrows";
-import Error from "../Error/Error";
-import useApp from "./useApp";
 import { Grid, Card, CardContent } from "@mui/material";
 import CssBaseline from "@mui/material/CssBaseline";
+import { BrowserRouter } from "react-router-dom";
 
 function App() {
-  const { error } = useApp();
-
   return (
-    <>
+    <BrowserRouter>
       <CssBaseline />
       <Grid
         container
@@ -23,13 +20,13 @@ function App() {
           <Card>
             <CardContent>
               <NumberInput />
-              {error ? <Error /> : <ColorsTable />}
+              <ColorsTable />
               <Arrows />
             </CardContent>
           </Card>
         </Grid>
       </Grid>
-    </>
+    </BrowserRouter>
   );
 }
 

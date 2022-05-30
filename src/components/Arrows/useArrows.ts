@@ -1,28 +1,26 @@
-import { useSelector, useDispatch } from "react-redux";
-import { prevPage, nextPage } from "../../features/pageSlice";
+import { useSelector } from "react-redux";
 import { RootState } from "../../app/store";
+import { useNavigate } from "react-router-dom";
 
 export default function useArrows() {
-  const page = useSelector((state: RootState) => state.page.value.page);
-  const filter = useSelector((state: RootState) => state.filter.value);
   const error = useSelector((state: RootState) => state.table.error);
-
+  const page = useSelector((state: RootState) => state.page.value.page);
   const totalPage = useSelector(
     (state: RootState) => state.page.value.totalPage
   );
-  const dispatch = useDispatch();
 
-  const firstPage = !!(page <= 1);
+  const navigate = useNavigate();
+
+  const firstPage = !!(page === 1);
   const lastPage = !!(page === totalPage);
-  const isFiltering = !!(filter !== "");
 
   const handlePrev = () => {
-    dispatch(prevPage());
+    navigate(`?page=${page - 1}`);
   };
 
   const handleNext = () => {
-    dispatch(nextPage());
+    navigate(`?page=${page + 1}`);
   };
 
-  return { firstPage, lastPage, isFiltering, error, handlePrev, handleNext };
+  return { firstPage, lastPage, totalPage, error, handlePrev, handleNext };
 }

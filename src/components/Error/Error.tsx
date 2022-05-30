@@ -16,7 +16,7 @@ export default function Error() {
     >
       <Grid item>
         <Typography color={"red"} textAlign="center">
-          Something went wrong. Please check logs.
+          Something went wrong. Please try again.
         </Typography>
       </Grid>
     </Grid>

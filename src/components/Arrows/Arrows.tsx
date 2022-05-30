@@ -4,18 +4,18 @@ import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import useArrows from "./useArrows";
 
 export default function Arrows() {
-  const { firstPage, lastPage, isFiltering, error, handlePrev, handleNext } =
+  const { firstPage, lastPage, totalPage, error, handlePrev, handleNext } =
     useArrows();
   return (
     <Stack direction="row" justifyContent="space-between" sx={{ padding: 1 }}>
       <IconButton
-        disabled={firstPage || isFiltering || error}
+        disabled={firstPage || !totalPage || error}
         onClick={handlePrev}
       >
         <ArrowBackIosNewIcon />
       </IconButton>
       <IconButton
-        disabled={lastPage || isFiltering || error}
+        disabled={lastPage || !totalPage || error}
         onClick={handleNext}
       >
         <ArrowForwardIosIcon />

@@ -19,7 +19,7 @@ export const pageSlice = createSlice({
     setPage: (state, action: PayloadAction<number>) => {
       state.value.page = action.payload;
     },
-    setTotalPage: (state, action: PayloadAction<number>) => {
+    setTotalPage: (state, action: PayloadAction<number | null>) => {
       state.value.totalPage = action.payload;
     },
   },

@@ -6,7 +6,7 @@ interface FilterValue {
 
 const initialState: FilterValue = { value: "" };
 
-export const pageSlice = createSlice({
+export const filterSlice = createSlice({
   name: "filter",
   initialState,
   reducers: {
@@ -16,6 +16,6 @@ export const pageSlice = createSlice({
   },
 });
 
-export const { changeFilter } = pageSlice.actions;
+export const { changeFilter } = filterSlice.actions;
 
-export default pageSlice.reducer;
+export default filterSlice.reducer;

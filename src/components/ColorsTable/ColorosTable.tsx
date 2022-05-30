@@ -7,11 +7,14 @@ import {
   TableRow,
   TableContainer,
 } from "@mui/material";
+import Error from "../Error/Error";
 
 export default function ColorsTable() {
-  const { table } = useColorTable();
+  const { table, error } = useColorTable();
 
-  return (
+  return error ? (
+    <Error />
+  ) : (
     <TableContainer
       sx={{
         height: 340,
