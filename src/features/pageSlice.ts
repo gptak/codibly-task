@@ -10,12 +10,6 @@ export const pageSlice = createSlice({
   name: "page",
   initialState,
   reducers: {
-    nextPage: (state) => {
-      state.value.page++;
-    },
-    prevPage: (state) => {
-      state.value.page--;
-    },
     setPage: (state, action: PayloadAction<number>) => {
       state.value.page = action.payload;
     },
@@ -25,6 +19,6 @@ export const pageSlice = createSlice({
   },
 });
 
-export const { nextPage, prevPage, setPage, setTotalPage } = pageSlice.actions;
+export const { setPage, setTotalPage } = pageSlice.actions;
 
 export default pageSlice.reducer;
