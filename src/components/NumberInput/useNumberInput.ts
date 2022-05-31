@@ -23,8 +23,11 @@ export default function useNumberInput() {
     dispatch(changeFilter(""));
   };
 
+  const submitDisable = !filter;
+
   return {
     filter,
+    submitDisable,
     handleInput,
     handleFilter,
     handleReset,

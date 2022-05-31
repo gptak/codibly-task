@@ -11,3 +11,11 @@ export interface ITablePageResponse {
     text: string;
   };
 }
+
+export interface ITableIdResponse {
+  data: Color | Color[];
+  support: {
+    url: string;
+    text: string;
+  };
+}

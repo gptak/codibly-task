@@ -1,22 +1,42 @@
 import useNumberInput from "./useNumberInput";
-import { TextField, Button } from "@mui/material";
+import { TextField, Button, Stack } from "@mui/material";
 
 const NumberInput = () => {
-  const { filter, handleInput, handleFilter, handleReset } = useNumberInput();
+  const { filter,submitDisable, handleInput, handleFilter, handleReset } = useNumberInput();
 
   return (
-    <>
+    <Stack direction="row" alignItems="center">
       <TextField
         type="number"
         inputProps={{ min: 1 }}
         value={filter}
         label="ID filter"
-        sx={{ marginBottom: 2 }}
         onChange={handleInput}
+        sx={{
+          width: {
+            xs: 100,
+            sm: "auto",
+          },
+        }}
       />
-      <Button onClick={handleFilter}>Submit</Button>
-      <Button onClick={handleReset}>Reset</Button>
-    </>
+      <Button
+        onClick={handleFilter}
+        disabled={submitDisable}
+        variant="contained"
+        size="small"
+        sx={{ marginLeft: 1 }}
+      >
+        Submit
+      </Button>
+      <Button
+        onClick={handleReset}
+        variant="outlined"
+        size="small"
+        sx={{ marginLeft: 1 }}
+      >
+        Reset
+      </Button>
+    </Stack>
   );
 };
 

@@ -11,6 +11,7 @@ import {
 } from "../../features/index";
 import { baseURL, perPage } from "../../config/config";
 import { useNavigateTo } from "../../hooks/useNavigateTo";
+import { ITablePageResponse, ITableIdResponse } from "./ColorsTable.d";
 
 export default function useColorsTable() {
   const table = useSelector(TABLE_SELECTOR);
@@ -25,10 +26,9 @@ export default function useColorsTable() {
   const paramsId = searchParams.get("id");
 
   useEffect(() => {
-    console.log("test");
     if (paramsPage) {
       axios
-        .get(`${baseURL}?page=${paramsPage}&per_page=${perPage}`)
+        .get<ITablePageResponse>(`${baseURL}?page=${paramsPage}&${perPage}`)
         .then((response) => {
           dispatch(changeTable(response.data.data));
           dispatch(setTotalPage(response.data.total_pages));
@@ -41,7 +41,7 @@ export default function useColorsTable() {
     }
     if (paramsId) {
       axios
-        .get(`${baseURL}?id=${paramsId}`)
+        .get<ITableIdResponse>(`${baseURL}?id=${paramsId}`)
         .then((response): void => {
           //check in case id is not unique
           if (response.data.data.isArray) {
@@ -58,7 +58,7 @@ export default function useColorsTable() {
       return;
     }
     navigateToPage(1);
-  }, [dispatch, navigateToPage, paramsPage, paramsId]);
+  }, [paramsPage, paramsId, dispatch, navigateToPage]);
 
   return { table, error };
 }
