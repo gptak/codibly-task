@@ -1,4 +1,4 @@
-import useColorTable from "./useColorstable";
+import useColorsTable from "./useColorsTable";
 import {
   TableBody,
   Table,
@@ -10,7 +10,7 @@ import {
 import Error from "../Error/Error";
 
 export default function ColorsTable() {
-  const { table, error } = useColorTable();
+  const { table, error } = useColorsTable();
 
   return error ? (
     <Error />

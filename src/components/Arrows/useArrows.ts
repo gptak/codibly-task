@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import { RootState } from "../../app/store";
-import { useNavigate } from "react-router-dom";
+import { useNavigateTo } from "../../hooks/useNavigateTo";
 
 export default function useArrows() {
   const error = useSelector((state: RootState) => state.table.error);
@@ -9,18 +9,18 @@ export default function useArrows() {
     (state: RootState) => state.page.value.totalPage
   );
 
-  const navigate = useNavigate();
+  const { navigateToPage } = useNavigateTo();
 
-  const firstPage = !!(page === 1);
-  const lastPage = !!(page === totalPage);
+  const firstPage = !!(page === 1) || !totalPage || error;
+  const lastPage = !!(page === totalPage) || !totalPage || error;
 
   const handlePrev = () => {
-    navigate(`?page=${page - 1}`);
+    navigateToPage(page - 1);
   };
 
   const handleNext = () => {
-    navigate(`?page=${page + 1}`);
+    navigateToPage(page + 1);
   };
 
-  return { firstPage, lastPage, totalPage, error, handlePrev, handleNext };
+  return { firstPage, lastPage, handlePrev, handleNext };
 }
