@@ -5,7 +5,7 @@ interface TableValue {
   error: boolean;
 }
 
-interface Color {
+export interface Color {
   id: number;
   name: string;
   year: number;
@@ -19,11 +19,11 @@ export const tableSlice = createSlice({
   name: "table",
   initialState,
   reducers: {
-    changeTable: (state, action: PayloadAction<Color[]>) => {
+    changeTable: (state: TableValue, action: PayloadAction<Color[]>): void => {
       state.value = action.payload;
       state.error = false;
     },
-    setError: (state) => {
+    setError: (state: TableValue): void => {
       state.error = true;
     },
   },

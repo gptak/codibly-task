@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-interface FilterValue {
+export interface FilterValue {
   value: string;
 }
 
@@ -10,7 +10,7 @@ export const filterSlice = createSlice({
   name: "filter",
   initialState,
   reducers: {
-    changeFilter: (state, action: PayloadAction<string>) => {
+    changeFilter: (state: FilterValue, action: PayloadAction<string>): void => {
       state.value = action.payload;
     },
   },
