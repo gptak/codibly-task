@@ -8,13 +8,13 @@ import {
   setTotalPage,
   TABLE_SELECTOR,
   ERROR_SELECTOR,
-} from "../features/index";
-import { baseURL, perPage } from "../config/config";
-import { useNavigateTo } from "../hooks/useNavigateTo";
-import { ITablePageResponse, ITableIdResponse } from "./ColorsTable/ColorsTable";
-import { AppDispatch } from "../app/store";
-import { Color } from "../features/tableSlice";
-import { errorMessages } from "../config/config";
+} from "../../features/index";
+import { baseURL, perPage } from "../../config/config";
+import { useNavigateTo } from "../../hooks/useNavigateTo";
+import { ITablePageResponse, ITableIdResponse } from "./ColorsTable.d";
+import { AppDispatch } from "../../app/store";
+import { Color } from "../../features/tableSlice";
+import { errorMessages } from "../../config/config";
 
 export default function useColorsTable() {
   const table: Color[] = useSelector(TABLE_SELECTOR);
