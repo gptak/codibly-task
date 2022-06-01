@@ -11,7 +11,7 @@ import {
 } from "../../features/index";
 import { baseURL, perPage } from "../../config/config";
 import { useNavigateTo } from "../../hooks/useNavigateTo";
-import { ITablePageResponse, ITableIdResponse } from "./ColorsTable.d";
+import { TTablePageResponse, TTableIdResponse } from "./ColorsTable.d";
 import { AppDispatch } from "../../app/store";
 import { Color } from "../../features/tableSlice";
 import { errorMessages } from "../../config/config";
@@ -31,7 +31,7 @@ export default function useColorsTable() {
   useEffect(() => {
     if (paramsPage) {
       axios
-        .get<ITablePageResponse>(`${baseURL}?page=${paramsPage}&${perPage}`)
+        .get<TTablePageResponse>(`${baseURL}?page=${paramsPage}&${perPage}`)
         .then((response) => {
           dispatch(changeTable(response.data.data));
           dispatch(setTotalPage(response.data.total_pages));
@@ -44,14 +44,8 @@ export default function useColorsTable() {
     }
     if (paramsId) {
       axios
-        .get<ITableIdResponse>(`${baseURL}?id=${paramsId}`)
+        .get<TTableIdResponse>(`${baseURL}?id=${paramsId}`)
         .then((response): void => {
-          //check in case id is not unique
-          if (response.data.data.isArray) {
-            dispatch(changeTable(response.data.data));
-            dispatch(setTotalPage(null));
-            return;
-          }
           dispatch(changeTable([response.data.data]));
           dispatch(setTotalPage(null));
         })

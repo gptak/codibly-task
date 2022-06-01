@@ -1,21 +1,17 @@
 import { Color } from "./tableSlice";
 
-export interface ITablePageResponse {
+export type TTablePageResponse = {
   page: number;
   per_page: number;
   total: number;
   total_pages: number;
   data: Color[];
-  support: {
-    url: string;
-    text: string;
-  };
-}
+  support: Support;
+};
 
-export interface ITableIdResponse {
-  data: Color | Color[];
-  support: {
-    url: string;
-    text: string;
-  };
-}
+export type TTableIdResponse = {
+  data: Color;
+  support: Support;
+};
+
+type Support = { url: string; text: string };

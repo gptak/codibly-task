@@ -31,8 +31,8 @@ export default function useNumberInput() {
     dispatch(changeFilter(""));
   };
 
-  const submitDisable = !filter;
-
+  const submitDisable = useMemo(() => !filter, [filter]);
+  
   const resetDisable = useMemo(() => !paramsId, [paramsId]);
 
   return {
