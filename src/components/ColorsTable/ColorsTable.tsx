@@ -1,4 +1,4 @@
-import useColorsTable from "./useColorsTable";
+import useColorsTable from "../useColorsTable";
 import {
   TableBody,
   Table,
