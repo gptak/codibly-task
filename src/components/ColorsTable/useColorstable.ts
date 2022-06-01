@@ -12,12 +12,15 @@ import {
 import { baseURL, perPage } from "../../config/config";
 import { useNavigateTo } from "../../hooks/useNavigateTo";
 import { ITablePageResponse, ITableIdResponse } from "./ColorsTable.d";
+import { AppDispatch } from "../../app/store";
+import { Color } from "../../features/tableSlice";
+import { errorMessages } from "../../config/config";
 
 export default function useColorsTable() {
-  const table = useSelector(TABLE_SELECTOR);
-  const error = useSelector(ERROR_SELECTOR);
+  const table: Color[] = useSelector(TABLE_SELECTOR);
+  const error: boolean = useSelector(ERROR_SELECTOR);
 
-  const dispatch = useDispatch();
+  const dispatch: AppDispatch = useDispatch();
 
   const { navigateToPage } = useNavigateTo();
 
@@ -46,14 +49,19 @@ export default function useColorsTable() {
           //check in case id is not unique
           if (response.data.data.isArray) {
             dispatch(changeTable(response.data.data));
+            dispatch(setTotalPage(null));
             return;
           }
           dispatch(changeTable([response.data.data]));
           dispatch(setTotalPage(null));
         })
         .catch((error: AxiosError) => {
+          if (error.code === "ERR_BAD_REQUEST") {
+            dispatch(setError(`${error.message}. ${errorMessages.error_404}`));
+            return;
+          }
           dispatch(setError());
-          console.error(error.message);
+          console.error(error);
         });
       return;
     }

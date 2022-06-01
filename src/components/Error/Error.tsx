@@ -1,12 +1,16 @@
 import { Box, Typography } from "@mui/material";
+import useError from "./useError";
+import { errorMessages } from "../../config/config";
 
 export default function Error() {
+  const { errorMessage } = useError();
   return (
     <Box
       sx={{
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
+        padding: 6,
         height: 340,
         width: {
           xs: 250,
@@ -15,7 +19,7 @@ export default function Error() {
       }}
     >
       <Typography color={"red"} textAlign="center">
-        Something went wrong. Please try again.
+        {errorMessage ? errorMessage : errorMessages.defaultError}
       </Typography>
     </Box>
   );

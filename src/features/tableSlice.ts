@@ -1,19 +1,24 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-interface TableValue {
+type TableValue = {
   value: Color[];
   error: boolean;
-}
+  errorMessage?: string;
+};
 
-export interface Color {
+export type Color = {
   id: number;
   name: string;
   year: number;
   color: string;
   pantone_value: string;
-}
+};
 
-const initialState: TableValue = { value: [], error: false };
+const initialState: TableValue = {
+  value: [],
+  error: false,
+  errorMessage: undefined,
+};
 
 export const tableSlice = createSlice({
   name: "table",
@@ -23,8 +28,12 @@ export const tableSlice = createSlice({
       state.value = action.payload;
       state.error = false;
     },
-    setError: (state: TableValue): void => {
+    setError: (
+      state: TableValue,
+      action: PayloadAction<string | undefined>
+    ): void => {
       state.error = true;
+      state.errorMessage = action.payload;
     },
   },
 });

@@ -8,6 +8,8 @@ const TOTAL_PAGE_SELECTOR = (state: RootState): number | null =>
   state.page.value;
 const TABLE_SELECTOR = (state: RootState): Color[] => state.table.value;
 const ERROR_SELECTOR = (state: RootState): boolean => state.table.error;
+const ERROR_MESSAGE_SELECTOR = (state: RootState): string | undefined =>
+  state.table.errorMessage;
 
 export {
   setError,
@@ -18,4 +20,5 @@ export {
   TOTAL_PAGE_SELECTOR,
   TABLE_SELECTOR,
   ERROR_SELECTOR,
+  ERROR_MESSAGE_SELECTOR,
 };

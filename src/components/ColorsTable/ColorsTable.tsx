@@ -8,6 +8,8 @@ import {
   TableContainer,
 } from "@mui/material";
 import Error from "../Error/Error";
+import { Color } from "../../features/tableSlice";
+import { Key } from "react";
 
 export default function ColorsTable() {
   const { table, error } = useColorsTable();
@@ -38,7 +40,7 @@ export default function ColorsTable() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {table.map((color, key) => (
+          {table.map((color: Color, key: Key) => (
             <TableRow sx={{ background: `${color.color}` }} key={key}>
               <TableCell align="left">{color.id}</TableCell>
               <TableCell align="left">{color.name}</TableCell>

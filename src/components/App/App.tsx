@@ -1,5 +1,5 @@
 import NumberInput from "../NumberInput/NumberInput";
-import ColorsTable from "../ColorsTable/ColorosTable";
+import ColorsTable from "../ColorsTable/ColorsTable";
 import Arrows from "../Arrows/Arrows";
 import { Box, Card, CardContent } from "@mui/material";
 import CssBaseline from "@mui/material/CssBaseline";
